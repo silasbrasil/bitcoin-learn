@@ -32,5 +32,23 @@ describe("hash.mjs suite test", () => {
   
       assert.equal(result instanceof Buffer, true);
     });
+
+    it("Should return a hashed Buffer from string param", () => {
+      const hashed = createSHA256("abc");
+
+      assert.equal(
+        hashed.toString("hex"),
+        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+      );
+    });
+
+    it("Should return a hashed Buffer from Buffer param", () => {
+      const hashed = createSHA256(Buffer.from("abc"));
+
+      assert.equal(
+        hashed.toString("hex"),
+        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+      );
+    });
   });
 });

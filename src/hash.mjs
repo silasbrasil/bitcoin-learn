@@ -11,7 +11,7 @@ export function createSHA256(data) {
 
   const encode = "hex";
   return createHash("sha256")
-    .update(data.toString(encode), encode)
+    .update(Buffer.from(data).toString(encode), encode)
     .digest()
 }
 

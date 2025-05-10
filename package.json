@@ -1,0 +1,13 @@
+{
+  "name": "bitcoin-learn",
+  "version": "1.0.0",
+  "description": "Project to learn how Bitcoin system works",
+  "main": "src/main.js",
+  "scripts": {
+    "test:unit": "node --test 'src/*.spec.mjs'"
+  },
+  "keywords": ["bitcoin", "Bitcoin", "crypto", "cryptocurrency"],
+  "author": "Silas Brasil",
+  "license": "ISC",
+  "type": "module"
+}

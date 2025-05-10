@@ -6,8 +6,16 @@
   "scripts": {
     "test:unit": "node --test 'src/*.spec.mjs'"
   },
-  "keywords": ["bitcoin", "Bitcoin", "crypto", "cryptocurrency"],
+  "keywords": [
+    "bitcoin",
+    "Bitcoin",
+    "crypto",
+    "cryptocurrency"
+  ],
   "author": "Silas Brasil",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "bs58": "^6.0.0"
+  }
 }

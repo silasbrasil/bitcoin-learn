@@ -25,6 +25,6 @@ export function createRIPEMD160(data) {
 
   const encode = "hex";
   return createHash("ripemd160")
-    .update(data.toString(encode), encode)
+    .update(Buffer.from(data).toString(encode), encode)
     .digest()
 }

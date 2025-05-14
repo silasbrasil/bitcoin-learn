@@ -4,7 +4,10 @@
   "description": "Project to learn how Bitcoin system works",
   "main": "src/main.js",
   "scripts": {
-    "test:unit": "node --test 'src/*.spec.mjs'"
+    "test:unit": "node --test 'src/*.spec.mjs'",
+    "format": "prettier --write .",
+    "lint": "eslint . ",
+    "lint:fix": "eslint . --fix "
   },
   "keywords": [
     "bitcoin",
@@ -17,5 +20,11 @@
   "type": "module",
   "dependencies": {
     "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3"
   }
 }

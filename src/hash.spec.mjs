@@ -2,21 +2,20 @@ import assert from "node:assert";
 import { describe, it } from "node:test";
 import { toSHA256Hash, toRIPEMD160Hash, toBASE58Hash } from "./hash.mjs";
 
-
 describe("hash.mjs suite test", () => {
   describe("toSHA256Hash test suite", () => {
     it("should throw Error to null data param", () => {
       try {
         toSHA256Hash(null);
-      } catch(err) {
+      } catch (err) {
         assert.equal(err instanceof Error, true);
       }
     });
-  
+
     it("should throw Error to undefined data param", () => {
       try {
         toSHA256Hash();
-      } catch(err) {
+      } catch (err) {
         assert.equal(err instanceof Error, true);
       }
     });
@@ -44,15 +43,15 @@ describe("hash.mjs suite test", () => {
     it("should throw Error to null data param", () => {
       try {
         toRIPEMD160Hash(null);
-      } catch(err) {
+      } catch (err) {
         assert.equal(err instanceof Error, true);
       }
     });
-  
+
     it("should throw Error to undefined data param", () => {
       try {
         toRIPEMD160Hash();
-      } catch(err) {
+      } catch (err) {
         assert.equal(err instanceof Error, true);
       }
     });
@@ -60,19 +59,13 @@ describe("hash.mjs suite test", () => {
     it("should return a hashed hexadecimal string from UTF-8 string", () => {
       const hashed = toRIPEMD160Hash("plain text");
 
-      assert.equal(
-        hashed,
-        "9f6242d551619061cc0b73ba553a416e9912261d"
-      );
+      assert.equal(hashed, "9f6242d551619061cc0b73ba553a416e9912261d");
     });
 
     it("should return a hashed hexadecimal string from hexadecimal string", () => {
       const hashed = toRIPEMD160Hash("aaa333", "hex");
 
-      assert.equal(
-        hashed,
-        "19507b79050a6e3dc5a926cd47595a2404902f5a"
-      );
+      assert.equal(hashed, "19507b79050a6e3dc5a926cd47595a2404902f5a");
     });
   });
 
@@ -80,15 +73,15 @@ describe("hash.mjs suite test", () => {
     it("should throw Error to null data param", () => {
       try {
         toSHA256Hash(null);
-      } catch(err) {
+      } catch (err) {
         assert.equal(err instanceof Error, true);
       }
     });
-  
+
     it("should throw Error to undefined data param", () => {
       try {
         toSHA256Hash();
-      } catch(err) {
+      } catch (err) {
         assert.equal(err instanceof Error, true);
       }
     });

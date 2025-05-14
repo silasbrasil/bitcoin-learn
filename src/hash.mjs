@@ -2,13 +2,12 @@ import { createHash } from "node:crypto";
 import { EncodeTypes, encodeTypeList } from "./encode-types.mjs";
 import bs58 from "bs58";
 
-
 /**
  * Receive a hexadecimal or utf8 string and return a encoded SHA256 hexadecimal string
  * @param {string} data string
  * @returns {string} hash SHA256 in hexadecimal encode
  */
-export function toSHA256Hash(data, encodeInput=EncodeTypes.UTF8) {
+export function toSHA256Hash(data, encodeInput = EncodeTypes.UTF8) {
   if (data == null) throw new Error("Invalid null or undefined data");
 
   if (!encodeTypeList.includes(encodeInput)) {
@@ -21,9 +20,7 @@ export function toSHA256Hash(data, encodeInput=EncodeTypes.UTF8) {
       .digest(EncodeTypes.HEX);
   }
 
-  return createHash("sha256")
-    .update(data)
-    .digest(EncodeTypes.HEX);
+  return createHash("sha256").update(data).digest(EncodeTypes.HEX);
 }
 
 /**
@@ -31,7 +28,7 @@ export function toSHA256Hash(data, encodeInput=EncodeTypes.UTF8) {
  * @param {string} data string
  * @returns {string} hash RIPEMD160 in hexadecimal encode
  */
-export function toRIPEMD160Hash(data, encodeInput=EncodeTypes.UTF8) {
+export function toRIPEMD160Hash(data, encodeInput = EncodeTypes.UTF8) {
   if (data == null) throw new Error("Invalid null or undefined data");
 
   if (!encodeTypeList.includes(encodeInput)) {
@@ -44,9 +41,7 @@ export function toRIPEMD160Hash(data, encodeInput=EncodeTypes.UTF8) {
       .digest(EncodeTypes.HEX);
   }
 
-  return createHash("ripemd160")
-    .update(data)
-    .digest(EncodeTypes.HEX);
+  return createHash("ripemd160").update(data).digest(EncodeTypes.HEX);
 }
 
 /**
@@ -54,7 +49,7 @@ export function toRIPEMD160Hash(data, encodeInput=EncodeTypes.UTF8) {
  * @param {string} data string
  * @returns {string} hash BASE58 in hexadecimal encode
  */
-export function toBASE58Hash(data, encodeInput=EncodeTypes.UTF8) {
+export function toBASE58Hash(data, encodeInput = EncodeTypes.UTF8) {
   if (data == null) throw new Error("Invalid null or undefined data");
 
   if (!encodeTypeList.includes(encodeInput)) {
@@ -67,7 +62,5 @@ export function toBASE58Hash(data, encodeInput=EncodeTypes.UTF8) {
       .toString(EncodeTypes.HEX);
   }
 
-  return bs58
-    .encode(Buffer.from(data))
-    .toString(EncodeTypes.HEX);
+  return bs58.encode(Buffer.from(data)).toString(EncodeTypes.HEX);
 }

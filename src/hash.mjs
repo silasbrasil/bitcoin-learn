@@ -1,44 +1,73 @@
 import { createHash } from "node:crypto";
+import { EncodeTypes, encodeTypeList } from "./encode-types.mjs";
 import bs58 from "bs58";
 
 
 /**
- * Receive a hexadecimal string or Buffer and return a encoded SHA256 Buffer
- * @param {string|Buffer} data string
- * @returns {Buffer} encoded SHA256 Buffer
+ * Receive a hexadecimal or utf8 string and return a encoded SHA256 hexadecimal string
+ * @param {string} data string
+ * @returns {string} hash SHA256 in hexadecimal encode
  */
-export function toSHA256Hash(data) {
+export function toSHA256Hash(data, encodeInput=EncodeTypes.UTF8) {
   if (data == null) throw new Error("Invalid null or undefined data");
 
-  const encode = "hex";
+  if (!encodeTypeList.includes(encodeInput)) {
+    throw new Error("Encode data type not suported");
+  }
+
+  if (encodeInput === EncodeTypes.HEX) {
+    return createHash("sha256")
+      .update(data, EncodeTypes.HEX)
+      .digest(EncodeTypes.HEX);
+  }
+
   return createHash("sha256")
-    .update(Buffer.from(data).toString(encode), encode)
-    .digest()
+    .update(data)
+    .digest(EncodeTypes.HEX);
 }
 
 /**
- * Receive a hexadecimal string or Buffer and return a encoded RIPEMD160 Buffer
- * @param {string|Buffer} data string
- * @returns {Buffer} encoded RIPEMD160 Buffer
+ * Receive a hexadecimal or utf8 string and return a encoded RIPEMD160 hexadecimal string
+ * @param {string} data string
+ * @returns {string} hash RIPEMD160 in hexadecimal encode
  */
-export function toRIPEMD160Hash(data) {
+export function toRIPEMD160Hash(data, encodeInput=EncodeTypes.UTF8) {
   if (data == null) throw new Error("Invalid null or undefined data");
 
-  const encode = "hex";
+  if (!encodeTypeList.includes(encodeInput)) {
+    throw new Error("Encode data type not suported");
+  }
+
+  if (encodeInput === EncodeTypes.HEX) {
+    return createHash("ripemd160")
+      .update(data, EncodeTypes.HEX)
+      .digest(EncodeTypes.HEX);
+  }
+
   return createHash("ripemd160")
-    .update(Buffer.from(data).toString(encode), encode)
-    .digest()
+    .update(data)
+    .digest(EncodeTypes.HEX);
 }
 
 /**
- * Receive a string or Buffer data and returns a encoded base58 Buffer
- * @param {string|Buffer} data string
- * @returns {Buffer} encoded base58 Buffer
+ * Receive a hexadecimal or utf8 string and return a encoded BASE58 hexadecimal string
+ * @param {string} data string
+ * @returns {string} hash BASE58 in hexadecimal encode
  */
-export function toBASE58Hash(data) {
+export function toBASE58Hash(data, encodeInput=EncodeTypes.UTF8) {
   if (data == null) throw new Error("Invalid null or undefined data");
 
-  const buffer = Buffer.from(data.toString("hex"));
+  if (!encodeTypeList.includes(encodeInput)) {
+    throw new Error("Encode data type not suported");
+  }
 
-  return Buffer.from(bs58.encode(buffer));
+  if (encodeInput === EncodeTypes.HEX) {
+    return bs58
+      .encode(Buffer.from(data, EncodeTypes.HEX))
+      .toString(EncodeTypes.HEX);
+  }
+
+  return bs58
+    .encode(Buffer.from(data))
+    .toString(EncodeTypes.HEX);
 }

@@ -20,34 +20,22 @@ describe("hash.mjs suite test", () => {
         assert.equal(err instanceof Error, true);
       }
     });
-  
-    it("should return a Buffer to string data param", () => {
-      const result = toSHA256Hash("test");
-  
-      assert.equal(result instanceof Buffer, true);
-    });
-  
-    it("should return a Buffer to Buffer data param", () => {
-      const result = toSHA256Hash(Buffer.from("test"));
-  
-      assert.equal(result instanceof Buffer, true);
-    });
 
-    it("should return a hashed Buffer from string param", () => {
-      const hashed = toSHA256Hash("abc");
+    it("should return a sha256 hexadecimal string from UTF-8 string", () => {
+      const hashed = toSHA256Hash("plain text");
 
       assert.equal(
-        hashed.toString("hex"),
-        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        hashed,
+        "c9ecf5e54c7b3f2640ecca21f96d4c3625a2b7935104f41c5ede29935a9e52c9"
       );
     });
 
-    it("should return a hashed Buffer from Buffer param", () => {
-      const hashed = toSHA256Hash(Buffer.from("abc"));
+    it("should return a sha256 hexadecimal string from hexadecimal string", () => {
+      const hashed = toSHA256Hash("aaa333", "hex");
 
       assert.equal(
-        hashed.toString("hex"),
-        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        hashed,
+        "a8509d25c9a5f12204e5afd9fc860db73fd9cc9facd84c1bb9692228ae4a45a9"
       );
     });
   });
@@ -68,34 +56,22 @@ describe("hash.mjs suite test", () => {
         assert.equal(err instanceof Error, true);
       }
     });
-  
-    it("should return a Buffer to string data param", () => {
-      const result = toRIPEMD160Hash("test");
-  
-      assert.equal(result instanceof Buffer, true);
-    });
-  
-    it("should return a Buffer to Buffer data param", () => {
-      const result = toRIPEMD160Hash(Buffer.from("test"));
-  
-      assert.equal(result instanceof Buffer, true);
-    });
 
-    it("should return a hashed Buffer from string param", () => {
-      const hashed = toRIPEMD160Hash("string test");
+    it("should return a hashed hexadecimal string from UTF-8 string", () => {
+      const hashed = toRIPEMD160Hash("plain text");
 
       assert.equal(
-        hashed.toString("hex"),
-        "57e87678241f3c131866c1c2db8d4c8613462155"
+        hashed,
+        "9f6242d551619061cc0b73ba553a416e9912261d"
       );
     });
 
-    it("should return a hashed Buffer from Buffer param", () => {
-      const hashed = toRIPEMD160Hash(Buffer.from("string test"));
+    it("should return a hashed hexadecimal string from hexadecimal string", () => {
+      const hashed = toRIPEMD160Hash("aaa333", "hex");
 
       assert.equal(
-        hashed.toString("hex"),
-        "57e87678241f3c131866c1c2db8d4c8613462155"
+        hashed,
+        "19507b79050a6e3dc5a926cd47595a2404902f5a"
       );
     });
   });
@@ -117,10 +93,16 @@ describe("hash.mjs suite test", () => {
       }
     });
 
-    it("should return a base58 hashed data", () => {
-      const hashed = toBASE58Hash("test base58");
+    it("should return a hashed hexadecimal string from utf8 string", () => {
+      const hashed = toBASE58Hash("plain text");
 
-      assert.equal(hashed.toString(), "Vs5LyRhPP1XXFKV");
+      assert.equal(hashed.toString(), "7KLXP9aAMk5UK5");
+    });
+
+    it("should return a hashed hexadecimal string from hexadecimal string", () => {
+      const hashed = toBASE58Hash("aaa111", "hex");
+
+      assert.equal(hashed.toString(), "zK8C");
     });
   });
 });
